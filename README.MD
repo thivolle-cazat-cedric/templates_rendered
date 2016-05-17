@@ -53,29 +53,29 @@ echo '{
 ### String (str)
 
 | attribute option | type | option | exemple | requiered |
-|:---------------- |:---- |:----------- | ------- |:---------:|
+| :--- | :--- | :--- | --- | :---: |
 | type             | str  | define type string | 'str' | X |
 | default          | int  | define default value | 'jhon' |  |
 | required         | bool | define if attribute is mandatory | True | |
 | description      | str  | helper for user *(displayed in placeholder)* | 'ex : Jhon' | |
 ```json
 {
-	...
-	"attrs" {
+	//...
+	"attrs": {
 		"attr_name": {
 		    "type": "str",
 		    "default": null,
 		    "required": false,
 		    "description": "name to say hello"
 		}
-	...
+	//...
 	}
 }
 ```
 
 ### Interger/Float (int)
 | attribute option | type | description | exemple | requiered |
-|:---------------- |:---- |:----------- | ------- |:---------:|
+| :--- | :--- | :--- | --- | :---: |
 | type             | str  | define type number | 'int' | X |
 | default          | int  | define default value | 48 |  |
 | required         | bool | define if attribute is mandatory | True | |
@@ -83,15 +83,15 @@ echo '{
 
 ```json
 {
-	...
-	"attrs" {
+	//...
+	"attrs": {
 		"attr_name": {
 		    "type": "int",
 		    "default": null,
 		    "required": false,
 		    "description": "name to say hello"
 		}
-	...
+	//...
 	}
 }
 ```
@@ -99,23 +99,24 @@ echo '{
 ### List (list)
 
 | attribute option | type | description | exemple | requiered |
-|:---------------- |:---- |:----------- | ------- |:---------:|
+| :--- | :--- | :--- | --- | :---: |
 | type             | str  | define type string | 'list' | X |
 | default          | str  | value in list | 'jhon' |  |
 | required         | bool | define if attribute is mandatory | True | |
 | description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
 | option           | list  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
+
 ```json
 {
-	...
-	"attrs" {
+	//...
+	"attrs": {
 		"attr_name": {
 		    "type": "list",
 		    "default": null,
 		    "required": false,
 		    "description": "choos in list"
 		}
-	...
+	//...
 	}
 }
 ```
