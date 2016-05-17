@@ -4,6 +4,6 @@
         <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="ngModel = '';"><span class="glyphicon glyphicon-remove-circle"></span></button>
         </span>
-        <input type="text" ng-model="ngModel" class="form-control" id="{{attr.name}}" placeholder="{{attr.description}}">
+        <input type="text" ng-model="ngModel" class="form-control" id="{{attr.name}}" placeholder="{{attr.description}}" ng-init="ngModel=attr.default">
     </div><!-- /input-group -->
 </div>

@@ -4,7 +4,7 @@
         <span class="input-group-btn">
             <button class="btn btn-danger" type="button" ng-click="decrement()"><span class="glyphicon glyphicon-minus"></span></button>
         </span>
-        <input type="number" ng-model="ngModel" class="form-control" id="{{attr.name}}" placeholder="{{attr.description}}">
+        <input type="number" ng-model="ngModel" class="form-control" id="{{attr.name}}" placeholder="{{attr.description}}" ng-init="ngModel=attr.default">
         <span class="input-group-btn">
             <button class="btn btn-success " type="button" ng-click="increment()"><span class="glyphicon glyphicon-plus"></span></button>
         </span>
