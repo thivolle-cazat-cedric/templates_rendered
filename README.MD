@@ -52,12 +52,12 @@ echo '{
 
 ### String (str)
 
-| Attribute option | Type | Description                                  | Exemple  | Requiered |
-| :---             | :--- | :---                                         | :---     |   :---:   |
-| type             | str  | define type string                           | 'str'    |      X    |
-| default          | int  | define default value                         | 'jhon'   |           |
-| required         | bool | define if attribute is mandatory             | True     |           |
-| description      | str  | helper for user *(displayed in placeholder)* | 'ex : Jhon' |        |
+| Attribute option | Type | Description | Exemple | Requiered |
+|------------------|------|----------------------------------------------|-------------|:---------:|
+| type | str | define type string | 'str' | X |
+| default | int | define default value | 'jhon' |  |
+| required | bool | define if attribute is mandatory | True |  |
+| description | str | helper for user *(displayed in placeholder)* | 'ex : Jhon' |  |
 
 ```json
 {
@@ -77,7 +77,7 @@ echo '{
 ### Interger/Float (int)
 
 | attribute option | type | description | exemple | requiered |
-| :--- | :--- | :--- | --- | :---: |
+|:--- |:--- |:--- | --- |:---: |
 | type             | str  | define type number | 'int' | X |
 | default          | int  | define default value | 48 |  |
 | required         | bool | define if attribute is mandatory | True | |
@@ -101,7 +101,7 @@ echo '{
 ### List (list)
 
 | attribute option | type | description | exemple | requiered |
-| :--- | :--- | :--- | --- | :---: |
+|:--- |:--- |:--- | --- |:---: |
 | type             | str  | define type string | 'list' | X |
 | default          | str  | value in list | 'jhon' |  |
 | required         | bool | define if attribute is mandatory | True | |
