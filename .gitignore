@@ -1,0 +1,8 @@
+# OS X
+*.DS_Store
+#python
+*.pyc
+env
+app/res-templates
+app/config/env
+
