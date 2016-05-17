@@ -64,6 +64,22 @@
             }
         }
     });
+    app.directive('boolInput', function() {
+       return {
+            templateUrl: '/lib/input-tpl/bool.html',
+            replace: true,
+            scope: {
+                ngModel: '=',
+                attr: '='
+            },
+            link:function(scope){
+                scope.ngModel = JSON.parse(scope.ngModel);
+                scope.change = function(){
+                    scope.ngModel = !scope.ngModel;
+                }
+            }
+        }
+    });
 
 
     app.service('Template', ['$http', function ($http) {

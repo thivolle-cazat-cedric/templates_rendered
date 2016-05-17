@@ -94,6 +94,7 @@
                             <div ng-repeat="attr in template.conf.attrs" class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-switch="attr.type.toLowerCase()">
                                 <int-input ng-switch-when="int" attr="attr" ng-model="value[attr.name]"></int-input>
                                 <list-input attr="attr" ng-model="value[attr.name]" ng-switch-when="list"></list-input>
+                                <bool-input attr="attr" ng-model="value[attr.name]" ng-switch-when="bool"></bool-input>
                                 <str-input attr="attr" ng-model="value[attr.name]" ng-switch-default></str-input>
                             </div>
                         </div>

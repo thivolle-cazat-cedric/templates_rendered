@@ -1,0 +1,4 @@
+<div class="form-group" ng-init="ngModel = attr.default">
+    <label for="{{attr.name}}">{{attr.name}}</label>
+    <button class="btn btn-default btn-block" ng-class="{'active': ngModel}" ng-click="change()"  bs-tooltip="attr.description"><span class="glyphicon" ng-class="{'glyphicon-check' : ngModel, 'glyphicon-unchecked': !ngModel}"></span></button>
+</div>

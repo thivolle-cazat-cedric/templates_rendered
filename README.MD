@@ -61,16 +61,16 @@ echo '{
 
 ```json
 {
-	//...
-	"attrs": {
-		"attr_name": {
-		    "type": "str",
-		    "default": null,
-		    "required": false,
-		    "description": "name to say hello"
-		}
-	//...
-	}
+    //...
+    "attrs": {
+        "attr_name": {
+            "type": "str",
+            "default": null,
+            "required": false,
+            "description": "name to say hello"
+        }
+    //...
+    }
 }
 ```
 
@@ -85,16 +85,16 @@ echo '{
 
 ```json
 {
-	//...
-	"attrs": {
-		"attr_name": {
-		    "type": "int",
-		    "default": null,
-		    "required": false,
-		    "description": "name to say hello"
-		}
-	//...
-	}
+    //...
+    "attrs": {
+        "attr_name": {
+            "type": "int",
+            "default": null,
+            "required": false,
+            "description": "name to say hello"
+        }
+    //...
+    }
 }
 ```
 
@@ -106,19 +106,47 @@ echo '{
 | default          | str  | value in list | 'jhon' |  |
 | required         | bool | define if attribute is mandatory | True | |
 | description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
-| option           | list  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
+| option           | list  | available list | ['Mr.', 'Ms.'] | |
 
 ```json
 {
-	//...
-	"attrs": {
-		"attr_name": {
-		    "type": "list",
-		    "default": null,
-		    "required": false,
-		    "description": "choos in list"
-		}
-	//...
-	}
+    //...
+    "attrs": {
+        "attr_name": {
+            "type": "list",
+            "default": null,
+            "required": false,
+            "description": "choos in list"
+        }
+    //...
+    }
 }
+```
+
+### Boolean (bool)
+
+| Attribute option | Type | Description | Exemple | Requiered |
+|------------------|------|----------------------------------------------|-------------|:---------:|
+| type             | str  | define type string | 'bool' | X |
+| default          | bool | default value of attribute | true | X |
+| required         | bool | define if attribute is mandatory | True | |
+| description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
+
+```json
+{
+    //...
+    "attrs": {
+        "end": {
+            "type": "bool",
+            "default": false,
+            "description": "helper"
+        }
+    //...
+    }
+}
+```
+
+*exemple use value in template*
+```html
+<span ng-if="value.end"> end </span>
 ```
