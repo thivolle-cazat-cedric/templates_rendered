@@ -27,7 +27,6 @@ SECRET_KEY = '''$app_key'''
 
 Application is runing on 127.0.0.1:4000
 
----
 
 # Create Template Hello World
 
@@ -46,11 +45,54 @@ echo '{
 }' > app/res-templates/hello_world.json
 ```
 
----
 
-# Supported Attribut Type
+# files name archintecture
 
-### String (str)
+In yout tempates ressource dire, every templates are composed of tow files, **template_name**.html and **template_name**.json
+
+## Html file
+
+HTML file containe the template. The syntaxe is the same of Angularjs
+
+## Json file
+
+This file containe the configruationtion of the template, content : 
+
+ * **header** : the title of the template
+ * **attrs** : atribute list aivailable in template
+ * **order** : to order the attr list
+
+**exemple**
+
+```json
+{
+    "header" : "Jsut say hello",
+    "attrs": {        
+        "name": {
+            "type": "str",
+            "default": "Jhon",
+            "required": false,
+            "description": "name to say hello"
+        },
+        "choice": {
+            "type": "list",
+            "default": "Mr.",
+            "required": false,
+            "option": ["Mr.", "Ms."]
+        },
+        "end": {
+            "type": "bool",
+            "default": false,
+            "description": "helper"
+        }
+    },
+    "order": ["choice", "name", "end"]
+}
+```
+
+### Supported Attribut Type
+
+#### String (str)
 
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
@@ -61,7 +103,7 @@ echo '{
 
 ```json
 {
-    //...
+    ...
     "attrs": {
         "attr_name": {
             "type": "str",
@@ -69,12 +111,12 @@ echo '{
             "required": false,
             "description": "name to say hello"
         }
-    //...
+    ...
     }
 }
 ```
 
-### Interger/Float (int)
+#### Interger/Float (int)
 
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
@@ -85,7 +127,7 @@ echo '{
 
 ```json
 {
-    //...
+    ...
     "attrs": {
         "attr_name": {
             "type": "int",
@@ -93,12 +135,12 @@ echo '{
             "required": false,
             "description": "name to say hello"
         }
-    //...
+    ...
     }
 }
 ```
 
-### List (list)
+#### List (list)
 
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
@@ -110,7 +152,7 @@ echo '{
 
 ```json
 {
-    //...
+    ...
     "attrs": {
         "attr_name": {
             "type": "list",
@@ -118,12 +160,12 @@ echo '{
             "required": false,
             "description": "choos in list"
         }
-    //...
+    ...
     }
 }
 ```
 
-### Boolean (bool)
+#### Boolean (bool)
 
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
@@ -134,14 +176,14 @@ echo '{
 
 ```json
 {
-    //...
+    ...
     "attrs": {
         "end": {
             "type": "bool",
             "default": false,
             "description": "helper"
         }
-    //...
+    ...
     }
 }
 ```

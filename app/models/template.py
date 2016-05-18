@@ -78,6 +78,7 @@ class TemplateConfig(object):
 
         self.header = conf.get('header', None)
         self._attrs = conf['attrs'].keys()
+        self.order = conf.get('order', self._attrs)
         for k in self._attrs:
             setattr(self, k, Attr(k, **conf['attrs'][k]))
 
@@ -88,7 +89,8 @@ class TemplateConfig(object):
         """
         dico = {
             'header': self.header,
-            'attrs': {}
+            'attrs': {},
+            'order': self.order
         }
         for k in self._attrs:
             dico['attrs'][k] = getattr(self, k).to_dict()
