@@ -112,3 +112,9 @@ body {
   border-radius: 50%;
 }
 
+.navbar .navbar-brand > img {
+  margin-top: -10px;
+  height: 40px;
+  display: inline-block;
+}
+

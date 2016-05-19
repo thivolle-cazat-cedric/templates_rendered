@@ -17,3 +17,5 @@ SECRET_KEY = None
 TEMPLATE_RES_DIR = './app/res-templates/'
 
 NAV_NAME = 'Template Render'
+NAV_ICON = 'icon/icon-min-125.png'
+FAV_ICON = 'icon/favicon.ico'

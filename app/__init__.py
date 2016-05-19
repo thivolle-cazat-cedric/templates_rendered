@@ -4,7 +4,7 @@ from __future__ import (
     absolute_import, division, print_function, unicode_literals
 )
 
-from flask import Flask, abort, json, send_file, render_template
+from flask import Flask, abort, json, send_file, render_template, redirect, url_for
 from .config import config_loader
 from app.models import init as models_init
 from flask.ext.cdn import CDN
@@ -25,6 +25,10 @@ def create_app(env='prod'):
     models_init(app)
 
     from app.models.template import Template
+
+    @app.route("/favicon.ico")
+    def favicon():
+        return redirect(url_for('static', filename=app.config['FAV_ICON']))
 
     @app.route('/', methods=['GET'])
     @app.route('/index.html', methods=['GET'])

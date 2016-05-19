@@ -21,6 +21,8 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <link rel="apple-touch-icon" href="[[url_for('static', filename='icon/favicon-125.png')]]"> 
+        <link rel="icon" href="[[url_for('static', filename='icon/favicon.ico')]]">
     </head>
 
     <body ng-controller="ControllerMain">
@@ -34,7 +36,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="[[url_for('index')]]">[[config['NAV_NAME']]]</a>
+                    <a class="navbar-brand" href="[[url_for('index')]]">
+                        <img src="[[url_for('static', filename=config['NAV_ICON'])]]" alt="">
+                        [[config['NAV_NAME']]]
+                    </a>
                 </div>
             </div>
         </nav>
