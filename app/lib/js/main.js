@@ -169,6 +169,7 @@
 
         $scope.viewTemplate = function(templateName){
             $scope.templateError = null;
+            $scope.template = null;
             TemplateSrv.getConf($scope.getPath(), templateName, function(err, status, d){
                 if (!err && d.data) {
                     $scope.value = {};
