@@ -168,7 +168,7 @@ class Template(object):
 
         self.conf_uri = self._path + '.json'
         self.template_uri = self._file_name + '.html'
-        self.conf = TemplateConfig('{0}/{1}.json'.format(self._path, self._file_name))
+        self.conf = TemplateConfig('{0}{1}.json'.format(self._path, self._file_name))
 
     def get_full_path(self):
         root_path = self._ROOT_PATH
