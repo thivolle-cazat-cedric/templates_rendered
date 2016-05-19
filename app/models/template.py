@@ -123,16 +123,18 @@ class Template(object):
             files = listdir(path)
             ret = []
             for f in files:
-                if f[0] not in ['.', '_']:
-                    name = splitext(f)[0]
-                    try:
-                        json = files.index(name + '.json')
-                        html = files.index(name + '.html')
-                        files.pop(json)
-                        files.pop(html)
+                name = splitext(f)[0]
+                try:
+                    files.index(name + '.json')
+                    files.index(name + '.html')
+
+                    if name not in ret:
                         ret.append(name)
-                    except Exception:
-                        files.pop(files.index(f))
+                    else:
+                        print(name)
+                except Exception:
+                    pass
+
             return ret
         else:
             raise IOError('Directory not found : ' + path)
