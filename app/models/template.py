@@ -4,6 +4,7 @@ from os import listdir, walk
 from os.path import basename, dirname, isfile, isdir, splitext
 from json import loads
 from . import _TEMPLATE_PATH
+from app.exceptions import JsonLoadException
 
 _AIVAILABLE_TYPE = ['int', 'str', 'bool', 'date']
 
@@ -59,7 +60,7 @@ class TemplateConfig(object):
         return self._ROOT_PATH + self.path_file
 
     def __init__(self, path_file):
-        self.path_file = path_file
+        self.path_file = unicode(path_file)
         if not isinstance(path_file, unicode):
             raise ValueError('TemplateConfig.init : arg1 must be unicode not ' + type(path_file).__name__)
 
@@ -70,8 +71,8 @@ class TemplateConfig(object):
             conf = dict()
             with open(self._full_path()) as f:
                 conf = loads(f.read())
-        except Exception as e:
-            raise ValueError('TemplateConfig.init : can\'t read conf file - {0} : {1}'.format(
+        except ValueError as e:
+            raise JsonLoadException('TemplateConfig.init : can\'t read conf file - {0} : {1}'.format(
                 self._full_path(),
                 e
             ))
@@ -168,7 +169,7 @@ class Template(object):
 
         self.conf_uri = self._path + '.json'
         self.template_uri = self._file_name + '.html'
-        self.conf = TemplateConfig('{0}{1}.json'.format(self._path, self._file_name))
+        self.conf = TemplateConfig('{0}/{1}.json'.format(self._path, self._file_name))
 
     def get_full_path(self):
         root_path = self._ROOT_PATH

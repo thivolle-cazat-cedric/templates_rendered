@@ -8,7 +8,7 @@ from flask import Flask, abort, json, send_file, render_template
 from .config import config_loader
 from app.models import init as models_init
 from flask.ext.cdn import CDN
-
+from app.exceptions import JsonLoadException
 
 
 def create_app(env='prod'):
@@ -48,11 +48,19 @@ def create_app(env='prod'):
     @app.route('/api/template/<template_name>', methods=['GET'])
     @app.route('/api/template/<path:path>/<template_name>', methods=['GET'])
     def api_template(template_name, path=""):
+        if template_name and template_name[-1]:
+            pass
         template_name = '{0}/{1}'.format(path, template_name)
         if not Template.is_valid_template_name(template_name):
             abort(404)
+        try:
+            tpl = Template(template_name)
+        except JsonLoadException as e:
+            return json.jsonify({
+                'error_message': "Invalid configuration",
+                'error_detail': e.line_error
+            })
 
-        tpl = Template(template_name)
         return json.jsonify({
             'data': tpl.to_dict(),
             'atts': tpl.conf._attrs
@@ -65,7 +73,14 @@ def create_app(env='prod'):
         if not Template.is_valid_template_name(template_name):
             abort(404)
 
-        tpl = Template(template_name)
+        try:
+            tpl = Template(template_name)
+        except JsonLoadException as e:
+            return json.jsonify({
+                'Error_message': "Invalid configuration",
+                'Error_détail': e.split('delimiter: ')[1]
+            })
+
         return send_file(tpl.get_full_path())
 
     return app

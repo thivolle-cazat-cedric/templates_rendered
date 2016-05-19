@@ -117,10 +117,11 @@
         this.getConf = function(dirName, templateName, done) {
             dirName =  preValidateUtri(dirName);
             if (dirName.substr(-1) != '/') dirName += '/';
+            var path = preValidateUtri(dirName + '/' +templateName)
 
             $http({
                 method: "GET",
-                url: preValidateUtri('api/template/' + dirName + templateName),
+                url: preValidateUtri('api/template/' + path),
                 headers: {
                     "Content-Type": "application/json; charset=UTF-8"
                 }
@@ -132,7 +133,7 @@
         }
     }])
 
-    app.controller('ControllerMain', ['$scope', 'Template', '$log', '$location', function ($scope, TemplateSrv, $log, $location) {
+    app.controller('ControllerMain', ['$scope', 'Template', '$log', '$location', '$alert', function ($scope, TemplateSrv, $log, $location, $alert) {
         $scope.path = [];
         
 
@@ -167,12 +168,21 @@
         }
 
         $scope.viewTemplate = function(templateName){
+            $scope.templateError = null;
             TemplateSrv.getConf($scope.getPath(), templateName, function(err, status, d){
                 if (!err && d.data) {
                     $scope.value = {};
                     $scope.template = d.data;
                     $scope.template.tplPath = TemplateSrv.getTemplateUri($scope.getPath(), templateName);
                     $scope.template.path = $scope.getPath();
+                } else {
+                    $alert({
+                        title: d.error_message + " for : " + templateName,
+                        content: "<br>" + d.error_detail,
+                        placement: 'top-right',
+                        type: 'danger',
+                        show: true
+                    })
                 }
             })
         }
