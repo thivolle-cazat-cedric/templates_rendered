@@ -15,11 +15,12 @@ git clone https://github.com/thivolle-cazat-cedric/templates_rendered
 cd templates_rendered
 virtualenv env
 source env/bin/activate
-pip install -r requirment.txt
+pip install -r requirement.txt
 mkdir app/config/env app/res-templates
+touch app/config/env/__init__.py
 touch app/config/env/prod.py
 app_key=`./manage.py generate_key`
-echo 'ENV_NAME = 'Production'
+echo "'ENV_NAME = 'Production'
 SECRET_KEY = '''$app_key'''
 " > app/config/env/prod.py
 ./manage.py runserver -p 4000
@@ -158,7 +159,8 @@ This file containe the configruationtion of the template, content :
             "type": "list",
             "default": null,
             "required": false,
-            "description": "choos in list"
+            "description": "choos in list",
+            "option": ['value 1', 'value 2']
         }
     ...
     }
