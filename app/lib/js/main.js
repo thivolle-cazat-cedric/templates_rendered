@@ -80,6 +80,21 @@
             }
         }
     });
+    app.directive('dateInput', function() {
+       return {
+            templateUrl: '/lib/input-tpl/date.html',
+            replace: true,
+            scope: {
+                ngModel: '=',
+                attr: '='
+            },
+            link:function(scope){
+                scope.formatDate = "dd/MM/yyyy";
+                scope.yesterday = new Date();
+                scope.yesterday.setDate(scope.yesterday.getDate() -1);
+            }
+        }
+    });
 
 
     app.service('Template', ['$http', function ($http) {

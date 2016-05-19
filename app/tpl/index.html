@@ -101,6 +101,7 @@
                                 <int-input ng-switch-when="int" attr="attr" ng-model="value[attr.name]"></int-input>
                                 <list-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="list"></list-input>
                                 <bool-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="bool"></bool-input>
+                                <date-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="date"></date-input>
                                 <str-input attr="attr" ng-model="value[attr.name]" ng-switch-default></str-input>
                             </div>
                         </div>
@@ -119,6 +120,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.5/angular-locale_fr-fr.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.7/angular-strap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.7/angular-strap.tpl.min.js"></script>
         <script src="[[url_for('static', filename='js/main.js')]]"></script>

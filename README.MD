@@ -145,7 +145,7 @@ This file containe the configruationtion of the template, content :
 
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
-| type             | str  | define type string | 'list' | X |
+| type             | str  | define type list like select | 'list' | X |
 | default          | str  | value in list | 'jhon' |  |
 | required         | bool | define if attribute is mandatory | True | |
 | description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
@@ -171,10 +171,32 @@ This file containe the configruationtion of the template, content :
 
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
-| type             | str  | define type string | 'bool' | X |
+| type             | str  | define type boolean | 'bool' | X |
 | default          | bool | default value of attribute | true | X |
 | required         | bool | define if attribute is mandatory | True | |
 | description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
+
+```json
+{
+    ...
+    "attrs": {
+        "end": {
+            "type": "bool",
+            "default": false,
+            "description": "helper"
+        }
+    ...
+    }
+}
+```
+
+#### Date (date)
+
+| Attribute option | Type | Description | Exemple | Requiered |
+|------------------|------|----------------------------------------------|-------------|:---------:|
+| type             | str  | define type date | 'date' | X |
+| default          | bool | default value of attribute | true |  |
+| required         | bool | define if attribute is mandatory | True | |
 
 ```json
 {

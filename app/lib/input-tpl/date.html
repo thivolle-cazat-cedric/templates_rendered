@@ -1,0 +1,9 @@
+<div class="form-group">
+    <label for="{{attr.name}}">{{attr.name}}</label>
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="ngModel = '';"><span class="glyphicon glyphicon-remove-circle"></span></button>
+        </span>
+        <input type="text" ng-model="ngModel" class="form-control" id="{{attr.name}}" placeholder="{{attr.description}}" ng-init="ngModel=attr.default" bs-datepicker dateFormat="formatDate">
+    </div><!-- /input-group -->
+</div>
