@@ -1,5 +1,5 @@
 <div class="form-group" ng-class="{'has-error': attr.required && !ngModel}">
-    <label for="{{attr.name}}" class="control-label">{{attr.name}}</label>
+    <label for="{{attr.name}}" class="control-label">{{attr.label || attr.name}}</label>
     <div class="input-group">
         <span class="input-group-btn">
             <button class="btn btn-default" ng-class="{'btn-danger': attr.required && !ngModel}" type="button" ng-click="ngModel = '';"><span class="glyphicon glyphicon-remove-circle"></span></button>

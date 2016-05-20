@@ -1,4 +1,4 @@
 <div class="form-group" ng-class="{'has-error': attr.required && !ngModel}">
-    <label class="control-label" for="{{attr.name}}">{{attr.name}}</label>
+    <label class="control-label" for="{{attr.name}}">{{attr.label || attr.name}}</label>
     <input type="text" ng-model="ngModel" class="form-control" id="{{attr.name}}" placeholder="{{attr.description}}" ng-init="ngModel=attr.default" bs-datepicker dateFormat="formatDate">
 </div>

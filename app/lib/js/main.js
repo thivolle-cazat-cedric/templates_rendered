@@ -2,7 +2,7 @@
     "use strict";
 
     //definition de la variable angular
-    var app = angular.module("app", ['mgcrea.ngStrap']);
+    var app = angular.module("app", ['mgcrea.ngStrap', 'ngTagsInput', 'angular.filter']);
 
     app.filter('replace',function(){
         return function(input, target, replaceTarger){
@@ -105,6 +105,16 @@
                 scope.formatDate = "dd/MM/yyyy";
                 scope.yesterday = new Date();
                 scope.yesterday.setDate(scope.yesterday.getDate() -1);
+            }
+        }
+    });
+    app.directive('tagInput', function() {
+       return {
+            templateUrl: '/lib/input-tpl/tags.html',
+            replace: true,
+            scope: {
+                ngModel: '=',
+                attr: '='
             }
         }
     });

@@ -101,6 +101,8 @@ This file containe the configruationtion of the template, content :
 | default | int | define default value | 'jhon' |  |
 | required | bool | define if attribute is mandatory | True |  |
 | description | str | helper for user *(displayed in placeholder)* | 'ex : Jhon' |  |
+| label       | str | label name, replace attribute name | 'ex : Name' |  |
+| return type      | str  | | |
 
 ```json
 {
@@ -125,6 +127,8 @@ This file containe the configruationtion of the template, content :
 | default          | int  | define default value | 48 |  |
 | required         | bool | define if attribute is mandatory | True | |
 | description      | str  | helper for user *(displayed in placeholder)* | 'hours to define auto close ticket' | |
+| label            | str  | label name, replace attribute name | 'ex : Name' |  |
+| return type      | Number  | | |
 
 ```json
 {
@@ -149,7 +153,9 @@ This file containe the configruationtion of the template, content :
 | default          | str  | value in list | 'jhon' |  |
 | required         | bool | define if attribute is mandatory | True | |
 | description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
-| option           | list  | available list | ['Mr.', 'Ms.'] | |
+| option           | list | available list | ['Mr.', 'Ms.'] | |
+| label            | str  | label name, replace attribute name | 'ex : Name' |  |
+| return type      | str  | | |
 
 ```json
 {
@@ -176,6 +182,7 @@ This file containe the configruationtion of the template, content :
 | required         | bool | define if attribute is mandatory | True | |
 | description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
 | option           | list  | available choice | ['Mr.', 'Ms.'] | |
+| label            | str | label name, replace attribute name | 'ex : Name' |  |
 | return type      | list  | | |
 
 ```json
@@ -202,6 +209,8 @@ This file containe the configruationtion of the template, content :
 | default          | bool | default value of attribute | true | X |
 | required         | bool | define if attribute is mandatory | True | |
 | description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
+| label            | str  | label name, replace attribute name | 'ex : Name' |  |
+| return type      | boolean  | | |
 
 ```json
 {
@@ -224,6 +233,8 @@ This file containe the configruationtion of the template, content :
 | type             | str  | define type date | 'date' | X |
 | default          | bool | default value of attribute | true |  |
 | required         | bool | define if attribute is mandatory | True | |
+| label            | str | label name, replace attribute name | 'ex : Name' |  |
+| return type      | Datetime  | | |
 
 ```json
 {

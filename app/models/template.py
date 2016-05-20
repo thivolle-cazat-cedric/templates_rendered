@@ -17,13 +17,14 @@ class Attr(object):
     description = None
     option = None
 
-    def __init__(self, name, type='str', default='None', required=False, description='', option=None):
+    def __init__(self, name, type='str', default='None', required=False, description='', option=None, label=None):
         self.name = name
         self._type = type
         self.default = default
         self.required = required
         self.description = description
         self.option = option
+        self.label = label
 
     @property
     def type(self):
@@ -48,7 +49,8 @@ class Attr(object):
             'default': self.default,
             'required': self.required,
             'description': self.description,
-            'option': self.option
+            'option': self.option,
+            'label': self.label
         }
 
 

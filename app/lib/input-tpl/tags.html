@@ -1,0 +1,4 @@
+<div class="form-group" ng-class="{'has-error': attr.required && !ngModel}">
+    <label for="{{attr.name}}" class="control-label">{{attr.label || attr.name}}</label>
+    <tags-input ng-model="ngModel" replaceSpacesWithDashes="false"></tags-input>
+</div>
