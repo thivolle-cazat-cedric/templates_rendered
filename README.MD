@@ -166,7 +166,7 @@ This file containe the configruationtion of the template, content :
             "default": null,
             "required": false,
             "description": "choos in list",
-            "option": ['value 1', 'value 2']
+            "option": ["value 1", "value 2"]
         }
     ...
     }
@@ -194,7 +194,7 @@ This file containe the configruationtion of the template, content :
             "default": null,
             "required": false,
             "description": "choos in list",
-            "option": ['value 1', 'value 2']
+            "option": ["value 1", "value 2"]
         }
     ...
     }
