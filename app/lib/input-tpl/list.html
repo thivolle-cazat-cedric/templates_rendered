@@ -1,5 +1,5 @@
-<div class="form-group">
-    <label for="{{attr.name}}">{{attr.name}}</label>
+<div class="form-group" ng-class="{'has-error': attr.required && !ngModel}">
+    <label for="{{attr.name}}" class="control-label">{{attr.name}}</label>
     <button type="button" class="btn btn-default btn-block" ng-model="ngModel" data-toggle="true" bs-options="opt for opt in attr.option" placeholder="{{attr.description || 'Chose in list'}}" ng-init="ngModel=attr.default" bs-select>
         Action <span class="caret"></span>
     </button>
