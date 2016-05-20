@@ -100,6 +100,7 @@
                             <div ng-repeat="attrKey in template.conf.order" class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-init="attr = template.conf.attrs[attrKey]" ng-switch="attr.type.toLowerCase()">
                                 <int-input ng-switch-when="int" attr="attr" ng-model="value[attr.name]"></int-input>
                                 <list-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="list"></list-input>
+                                <multiple-list-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="multiple-list"></multiple-list-input>
                                 <bool-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="bool"></bool-input>
                                 <date-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="date"></date-input>
                                 <str-input attr="attr" ng-model="value[attr.name]" ng-switch-default></str-input>

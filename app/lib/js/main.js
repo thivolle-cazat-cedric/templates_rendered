@@ -61,6 +61,19 @@
             scope: {
                 ngModel: '=',
                 attr: '='
+            },
+        }
+    });
+    app.directive('multipleListInput', function() {
+       return {
+            templateUrl: '/lib/input-tpl/multipleList.html',
+            replace: true,
+            scope: {
+                ngModel: '=',
+                attr: '='
+            },
+            link:function(scope){
+                scope.multiple = true;
             }
         }
     });

@@ -167,6 +167,33 @@ This file containe the configruationtion of the template, content :
 }
 ```
 
+#### Multiple list (multiple-list)
+
+| Attribute option | Type | Description | Exemple | Requiered |
+|------------------|------|----------------------------------------------|-------------|:---------:|
+| type             | str  | define type list like select | 'multiple-list' | X |
+| default          | list | list of value | ['jhon'] |  |
+| required         | bool | define if attribute is mandatory | True | |
+| description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
+| option           | list  | available choice | ['Mr.', 'Ms.'] | |
+| return type      | list  | | |
+
+```json
+{
+    ...
+    "attrs": {
+        "attr_name": {
+            "type": "multiple-list",
+            "default": null,
+            "required": false,
+            "description": "choos in list",
+            "option": ['value 1', 'value 2']
+        }
+    ...
+    }
+}
+```
+
 #### Boolean (bool)
 
 | Attribute option | Type | Description | Exemple | Requiered |
