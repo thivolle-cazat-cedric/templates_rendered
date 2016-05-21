@@ -97,16 +97,17 @@
                         </ol>
                     </p>
                     <hr>
+                    <hr>
                     <div ng-if="template">
                         <div class="row clearfix">
-                            <div ng-repeat="attrKey in template.conf.order" class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-init="attr = template.conf.attrs[attrKey]" ng-switch="attr.type.toLowerCase()">
+                            <div ng-repeat="attrKey in template.conf.order" ng-init="attr = template.conf.attrs[attrKey]" ng-switch="attr.type.toLowerCase()" ng-class="visibleCondition(attr.ifValueEqual, attr.ifValueIn)? 'col-xs-12 col-sm-6 col-md-4 col-lg-3' : 'hidden'">
+                                <multiple-list-input ng-switch-when="multiple-list" attr="attr" ng-model="value[attr.name]" ></multiple-list-input>
+                                <list-input ng-switch-when="list" attr="attr" ng-model="value[attr.name]" ></list-input>
+                                <bool-input ng-switch-when="bool" attr="attr" ng-model="value[attr.name]"></bool-input>
+                                <date-input ng-switch-when="date" attr="attr" ng-model="value[attr.name]"></date-input>
                                 <int-input ng-switch-when="int" attr="attr" ng-model="value[attr.name]"></int-input>
-                                <list-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="list"></list-input>
-                                <multiple-list-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="multiple-list"></multiple-list-input>
-                                <bool-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="bool"></bool-input>
-                                <date-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="date"></date-input>
-                                <tag-input attr="template.conf.attrs[attrKey]" ng-model="value[attr.name]" ng-switch-when="tags"></tag-input>
-                                <str-input attr="attr" ng-model="value[attr.name]" ng-switch-default></str-input>
+                                <tag-input ng-switch-when="tags" attr="attr" ng-model="value[attr.name]"></tag-input>
+                                <str-input ng-switch-default attr="attr" ng-model="value[attr.name]" ></str-input>
                             </div>
                         </div>
                         <hr>

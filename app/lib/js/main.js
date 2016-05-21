@@ -4,6 +4,14 @@
     //definition de la variable angular
     var app = angular.module("app", ['mgcrea.ngStrap', 'ngTagsInput', 'angular.filter']);
 
+    app.filter("toHtml", ['$sce', function($sce) {
+        return function(htmlCode, orHtml){
+            var value = htmlCode || orHtml;
+
+            return $sce.trustAsHtml(value.replace(/\n/g,'<br>'));
+        }
+    }]);
+
     app.filter('replace',function(){
         return function(input, target, replaceTarger){
             if (angular.isString(input)) {
@@ -11,6 +19,15 @@
             } else {
                 return input;
             }
+        }
+    });
+    app.filter('valuesInArray',function(){
+        return function(arraySrc, arrayCompart){
+            if (!angular.isArray(arraySrc) && !angular.isArray(arrayCompart)) return [];
+
+            return arraySrc.filter(function(value, index){
+                return arrayCompart.indexOf(value) > -1 ? true : false;
+            })
         }
     });
 
@@ -171,80 +188,122 @@
         }
     }])
 
-    app.controller('ControllerMain', ['$scope', 'Template', '$log', '$location', '$alert', function ($scope, TemplateSrv, $log, $location, $alert) {
-        $scope.path = [];
-        
+    app.controller('ControllerMain', [
+        '$scope',
+        'Template',
+        '$log',
+        '$location',
+        '$alert',
+        '$filter',
+        function ($scope, TemplateSrv, $log, $location, $alert, $filter) {
+            $scope.path = [];
+            
 
-        $scope.getPath = function(){
-            var path =  $scope.path.join('/');
-            if (path.substr(0,1) == "/") {
-                path = path.substr(1);
-            }
-            return path;
-        }
-
-        $scope.changePath = function(dirName){
-            $scope.path.push(dirName);
-            refreshDir();
-        }
-        $scope.gotoPathIndex = function(index){
-            $scope.path = $scope.path.splice(0, index + 2);
-            refreshDir()
-            // $scope.backDirectory();
-
-        }
-        $scope.backDirectory = function(){
-            $scope.path.splice($scope.path.length-1, 1);
-            $scope.changePath($scope.path.splice($scope.path.length-1, 1)[0]);
-        }
-        $scope.currentDirectory = function(){
-            if ($scope.path.length > 1) {
-                return $scope.path[$scope.path.length-1];
-            } else {
-                return null;
-            }
-        }
-
-        $scope.viewTemplate = function(templateName){
-            $scope.templateError = null;
-            $scope.template = null;
-            TemplateSrv.getConf($scope.getPath(), templateName, function(err, status, d){
-                if (!err && d.data) {
-                    $scope.value = {};
-                    $scope.template = d.data;
-                    $scope.template.tplPath = TemplateSrv.getTemplateUri($scope.getPath(), templateName);
-                    $scope.template.path = $scope.getPath();
-                } else {
-                    $alert({
-                        title: d.error_message + " for : " + templateName,
-                        content: "<br>" + d.error_detail,
-                        placement: 'top-right',
-                        type: 'danger',
-                        show: true
-                    })
+            $scope.getPath = function(){
+                var path =  $scope.path.join('/');
+                if (path.substr(0,1) == "/") {
+                    path = path.substr(1);
                 }
-            })
-        }
+                return path;
+            }
 
-        function refreshDir(){
-            $scope.templates = [];
-            TemplateSrv.list($scope.getPath(), function(err, status, data){
-                if (!err) {
-                    $scope.directories = data.directories;
-                    $scope.templates = data.templates;
-                    // $location.hash($scope.getPath())
+            $scope.changePath = function(dirName){
+                $scope.path.push(dirName);
+                refreshDir();
+            }
+            $scope.gotoPathIndex = function(index){
+                $scope.path = $scope.path.splice(0, index + 2);
+                refreshDir()
+                // $scope.backDirectory();
+
+            }
+            $scope.backDirectory = function(){
+                $scope.path.splice($scope.path.length-1, 1);
+                $scope.changePath($scope.path.splice($scope.path.length-1, 1)[0]);
+            }
+            $scope.currentDirectory = function(){
+                if ($scope.path.length > 1) {
+                    return $scope.path[$scope.path.length-1];
                 } else {
-                    if (status != 404) {
-                        $log.error('error on refreshDir : [' + status + ']')
+                    return null;
+                }
+            }
+
+            $scope.viewTemplate = function(templateName){
+                $scope.templateError = null;
+                $scope.template = null;
+                TemplateSrv.getConf($scope.getPath(), templateName, function(err, status, d){
+                    if (!err && d.data) {
+                        $scope.value = {};
+                        $scope.template = d.data;
+                        $scope.template.tplPath = TemplateSrv.getTemplateUri($scope.getPath(), templateName);
+                        $scope.template.path = $scope.getPath();
+                    } else {
+                        $alert({
+                            title: d.error_message + " for : " + templateName,
+                            content: "<br>" + d.error_detail,
+                            placement: 'top-right',
+                            type: 'danger',
+                            show: true
+                        })
                     }
+                })
+            }
+
+            function refreshDir(){
+                $scope.templates = [];
+                TemplateSrv.list($scope.getPath(), function(err, status, data){
+                    if (!err) {
+                        $scope.directories = data.directories;
+                        $scope.templates = data.templates;
+                        // $location.hash($scope.getPath())
+                    } else {
+                        if (status != 404) {
+                            $log.error('error on refreshDir : [' + status + ']')
+                        }
+                    }
+                })
+            }
+
+            $scope.changePath('/')
+
+            
+
+            $scope.visibleCondition = function(objCondEqual, objCondIn){
+                
+                var visible = true;
+                var equalKeys = null;
+
+                if (objCondEqual != null) {
+                    equalKeys = Object.keys(objCondEqual);
+                    equalKeys.forEach(function(key) {
+                        visible &= objCondEqual[key] == $scope.value[key]
+                    });
+                    
+                } else if (objCondIn != null){
+                    equalKeys = Object.keys(objCondIn);
+                    equalKeys.forEach(function(key) {
+
+                        if (angular.isArray(objCondIn[key]) && angular.isArray($scope.value[key])) {
+                            if ($filter('valuesInArray')($scope.value[key], objCondIn[key]).length > 0) {
+                                visible &= true;
+                            } else {
+                                visible &= false;
+                            }
+                        } else if (angular.isArray(objCondIn[key]) && !angular.isArray($scope.value[key])) {
+                            visible &= false;
+                        } else {
+                            visible &= angular.isArray($scope.value[key]) && $filter('contains')($scope.value[key], objCondIn[key]())
+                        }
+                    });
                 }
-            })
-        }
 
-        $scope.changePath('/')
+                return visible;
 
+            }
         
-    }]);
+        }
+    ]);
 
     
 

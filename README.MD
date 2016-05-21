@@ -1,6 +1,6 @@
 # Templates rendered
 ---
-Simple project, based on Flask Backend and AngularJs frontend. To display your templates according values defined in json configuration. Write your templates  with angularJs syntax *(html)*.
+Simple project, based on Flask Backend and AngularJs frontend. To display your templates according values defined in json configuration. Write your templates with html language and angularJs directive.
 
 # Requierments
  * Python
@@ -29,7 +29,7 @@ SECRET_KEY = '''$app_key'''
 Application is runing on 127.0.0.1:4000
 
 
-# Create Template Hello World
+# Create template hello World
 
 ```bash
 echo "Hello <strong>{{value.name}}</strong>" > app/res-templates/hello_world.html
@@ -47,21 +47,24 @@ echo '{
 ```
 
 
-# files name archintecture
+# Files archintecture
 
-In yout tempates ressource dire, every templates are composed of tow files, **template_name**.html and **template_name**.json
+In your tempates ressources directory, every templates are composed of two files, **template_name**.html and **template_name**.json
+
 
 ## Html file
 
-HTML file containe the template. The syntaxe is the same of Angularjs
+HTML file contain the template. The syntaxe is the same of Angularjs, you can use ng-directive, *ng-if, ng-switch, ...*. You can use filter [Filter angular](https://docs.angularjs.org/api/ng/filter) and [angular-filter](https://github.com/a8m/angular-filter).
+
+To access value in template use ``{{value.attrName}}``
 
 ## Json file
 
 This file containe the configruationtion of the template, content : 
 
- * **header** : the title of the template
- * **attrs** : atribute list aivailable in template
- * **order** : to order the attr list
+ * **header** : *(str)* the title of the template
+ * **attrs** : *(list)* atribute list aivailable in template
+ * **order** : *(list)* to order the attr list
 
 **exemple**
 
@@ -93,15 +96,23 @@ This file containe the configruationtion of the template, content :
 
 ### Supported Attribut Type
 
+#### Common key/value
+
+| Attribute option | Type | Description | Exemple | Requiered |
+|------------------|------|----------------------------------------------|-------------|:---------:|
+| label       | str | label name, replace attribute name | 'ex : Name' |  |
+| description | str | helper for user *(displayed in placeholder)* | 'ex : Jhon' |  |
+| required | bool | define if attribute is mandatory | True |  |
+| ifValueEqual | Object | Requiered value from key | {'hostname' : "Laptop"} | |
+| ifValueIn    | Object | Requiered value in list  | {'services': ["DHCP", "DNS"]} | |
+
+
 #### String (str)
 
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
 | type | str | define type string | 'str' | X |
 | default | int | define default value | 'jhon' |  |
-| required | bool | define if attribute is mandatory | True |  |
-| description | str | helper for user *(displayed in placeholder)* | 'ex : Jhon' |  |
-| label       | str | label name, replace attribute name | 'ex : Name' |  |
 | return type      | str  | | |
 
 ```json
@@ -124,10 +135,7 @@ This file containe the configruationtion of the template, content :
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
 | type             | str  | define type number | 'int' | X |
-| default          | int  | define default value | 48 |  |
-| required         | bool | define if attribute is mandatory | True | |
-| description      | str  | helper for user *(displayed in placeholder)* | 'hours to define auto close ticket' | |
-| label            | str  | label name, replace attribute name | 'ex : Name' |  |
+| default          | int | define default value | 1,2 |  |
 | return type      | Number  | | |
 
 ```json
@@ -150,11 +158,8 @@ This file containe the configruationtion of the template, content :
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
 | type             | str  | define type list like select | 'list' | X |
-| default          | str  | value in list | 'jhon' |  |
-| required         | bool | define if attribute is mandatory | True | |
-| description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
-| option           | list | available list | ['Mr.', 'Ms.'] | |
-| label            | str  | label name, replace attribute name | 'ex : Name' |  |
+| option           | list | available list | ['Yes', 'No.'] | |
+| default          | str | Value in list | 'Yes' |  |
 | return type      | str  | | |
 
 ```json
@@ -178,11 +183,8 @@ This file containe the configruationtion of the template, content :
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
 | type             | str  | define type list like select | 'multiple-list' | X |
-| default          | list | list of value | ['jhon'] |  |
-| required         | bool | define if attribute is mandatory | True | |
-| description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
-| option           | list  | available choice | ['Mr.', 'Ms.'] | |
-| label            | str | label name, replace attribute name | 'ex : Name' |  |
+| option           | list | available choice | ['Yes', 'No', 'Maybe'] | |
+| default          | list | Valid value in list | ['Yes'] |  |
 | return type      | list  | | |
 
 ```json
@@ -206,10 +208,7 @@ This file containe the configruationtion of the template, content :
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
 | type             | str  | define type boolean | 'bool' | X |
-| default          | bool | default value of attribute | true | X |
-| required         | bool | define if attribute is mandatory | True | |
-| description      | str  | helper for user *(displayed when no selected value)* | 'choose entry in list' | |
-| label            | str  | label name, replace attribute name | 'ex : Name' |  |
+| default          | bool | defaul value | False | X |
 | return type      | boolean  | | |
 
 ```json
@@ -231,9 +230,6 @@ This file containe the configruationtion of the template, content :
 | Attribute option | Type | Description | Exemple | Requiered |
 |------------------|------|----------------------------------------------|-------------|:---------:|
 | type             | str  | define type date | 'date' | X |
-| default          | bool | default value of attribute | true |  |
-| required         | bool | define if attribute is mandatory | True | |
-| label            | str | label name, replace attribute name | 'ex : Name' |  |
 | return type      | Datetime  | | |
 
 ```json
@@ -242,7 +238,6 @@ This file containe the configruationtion of the template, content :
     "attrs": {
         "end": {
             "type": "bool",
-            "default": false,
             "description": "helper"
         }
     ...

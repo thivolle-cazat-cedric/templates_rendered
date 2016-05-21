@@ -17,7 +17,18 @@ class Attr(object):
     description = None
     option = None
 
-    def __init__(self, name, type='str', default='None', required=False, description='', option=None, label=None):
+    def __init__(self,
+        name,
+        type='str',
+        default='None',
+        required=False,
+        description='',
+        option=None,
+        label=None,
+        ifValueEqual=None,
+        ifValueIn=None,
+        **kwargs
+    ):
         self.name = name
         self._type = type
         self.default = default
@@ -25,7 +36,14 @@ class Attr(object):
         self.description = description
         self.option = option
         self.label = label
-
+        if isinstance(ifValueEqual, dict):
+            self.ifValueEqual = ifValueEqual
+        else:
+            self.ifValueEqual = None
+        if isinstance(ifValueIn, dict):
+            self.ifValueIn = ifValueIn
+        else:
+            self.ifValueIn = None
     @property
     def type(self):
         return self._type.lower()
@@ -50,7 +68,9 @@ class Attr(object):
             'required': self.required,
             'description': self.description,
             'option': self.option,
-            'label': self.label
+            'label': self.label,
+            'ifValueEqual': self.ifValueEqual,
+            'ifValueIn': self.ifValueIn
         }
 
 
@@ -76,7 +96,7 @@ class TemplateConfig(object):
         except ValueError as e:
             raise JsonLoadException('TemplateConfig.init : can\'t read conf file - {0} : {1}'.format(
                 self._full_path(),
-                e
+                e.message
             ))
 
         self.header = conf.get('header', None)
@@ -132,8 +152,7 @@ class Template(object):
 
                     if name not in ret:
                         ret.append(name)
-                    else:
-                        print(name)
+
                 except Exception:
                     pass
 
