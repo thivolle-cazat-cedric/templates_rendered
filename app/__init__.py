@@ -7,7 +7,6 @@ from __future__ import (
 from flask import Flask, abort, json, send_file, render_template, redirect, url_for
 from .config import config_loader
 from app.models import init as models_init
-from flask.ext.cdn import CDN
 from app.exceptions import JsonLoadException
 
 
@@ -20,8 +19,6 @@ def create_app(env='prod'):
     app.jinja_env.variable_start_string = '[['
     app.jinja_env.variable_end_string = ']]'
     config_loader(app.config, env)
-    cdn = CDN(app)
-    cdn.init_app(app)
     models_init(app)
 
     from app.models.template import Template
