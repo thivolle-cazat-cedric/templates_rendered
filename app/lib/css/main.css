@@ -28,7 +28,13 @@ body {
 /*
  * Sidebar
  */
-
+  .sidebar .footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+  }
   .sidebar {
     position: fixed;
     top: 51px;
