@@ -98,7 +98,7 @@
                     <hr>
                     <div ng-if="template">
                         <div class="row clearfix">
-                            <div ng-repeat="attrKey in template.conf.order" ng-init="attr = template.conf.attrs[attrKey]" ng-switch="attr.type.toLowerCase()" ng-class="{'col-xs-12 col-sm-6 col-md-4 col-lg-3' : visibleCondition(attr.ifValueEqual, attr.ifValueIn), 'hidden': !visibleCondition(attr.ifValueEqual, attr.ifValueIn), 'start-row': attr.name == 'services'}">
+                            <div ng-repeat="attrKey in template.conf.order track by $index" ng-init="attr = template.conf.attrs[attrKey]" ng-switch="attr.type.toLowerCase()" ng-class="{'col-xs-12 col-sm-6 col-md-4 col-lg-3' : visibleCondition(attr.ifValueEqual, attr.ifValueIn), 'hidden': !visibleCondition(attr.ifValueEqual, attr.ifValueIn), 'start-row': attr.name == 'services'}">
                                 <multiple-list-input ng-switch-when="multiple-list" attr="attr" ng-model="value[attr.name]" ></multiple-list-input>
                                 <list-input ng-switch-when="list" attr="attr" ng-model="value[attr.name]" ></list-input>
                                 <bool-input ng-switch-when="bool" attr="attr" ng-model="value[attr.name]"></bool-input>
