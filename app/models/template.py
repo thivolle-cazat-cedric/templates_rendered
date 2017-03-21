@@ -92,7 +92,7 @@ class TemplateConfig(object):
         try:
             conf = dict()
             with open(self._full_path()) as f:
-                conf = loads(f.read())
+                conf = loads(f.read(), encoding="utf-8")
         except ValueError as e:
             raise JsonLoadException('TemplateConfig.init : can\'t read conf file - {0} : {1}'.format(
                 self._full_path(),
