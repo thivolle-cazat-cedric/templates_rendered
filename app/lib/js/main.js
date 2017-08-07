@@ -4,6 +4,49 @@
     //definition de la variable angular
     var app = angular.module("app", ['mgcrea.ngStrap', 'ngTagsInput', 'angular.filter']);
 
+    app.filter('removeAccents',function() {
+        return function(source) {
+            var accent = [
+                /[\300-\306]/g, /[\340-\346]/g, // A, a
+                /[\310-\313]/g, /[\350-\353]/g, // E, e
+                /[\314-\317]/g, /[\354-\357]/g, // I, i
+                /[\322-\330]/g, /[\362-\370]/g, // O, o
+                /[\331-\334]/g, /[\371-\374]/g, // U, u
+                /[\321]/g, /[\361]/g, // N, n
+                /[\307]/g, /[\347]/g, // C, c
+            ],
+            noaccent = ['A','a','E','e','I','i','O','o','U','u','N','n','C','c'];
+
+            for (var i = 0; i < accent.length; i++){
+                source = source.replace(accent[i], noaccent[i]);
+            }
+
+            return source;
+        }
+    });
+
+    app.filter('spaceless',function() {
+        return function(input) {
+            if (input) {
+                return input.replace(/\s+/g, '_');    
+            }
+        }
+    });
+
+    app.filter('dashless',function() {
+    return function(input) {
+        if (input) {
+            return input.replace(/\-+/g, '_');    
+        }
+    }
+    });
+
+    app.filter('capitalize', function() {
+        return function(input) {
+        return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+        }
+    });
+
     app.filter("toHtml", ['$sce', function($sce) {
         return function(htmlCode, orHtml){
             var value = htmlCode || orHtml;
